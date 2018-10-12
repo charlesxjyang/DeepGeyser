@@ -16,7 +16,7 @@ from grand import process_grand,clean_grand
 def rf_model(lookbacklength,lookforwardlength,test_split,n_decision_trees):
     df = clean_grand()
     X_train,X_test,y_train,y_test = process_grand(df,lookbacklength=lookbacklength,lookforwardlength=lookforwardlength,test_split=test_split)
-    X_train,X_test = np.squeeze(X_train,axis=2),np.expand_dims(X_test,axis=2)
+    X_train,X_test = np.squeeze(X_train),np.squeeze(X_test)
     rf = RandomForestRegressor(n_estimators=n_decision_trees)
     rf.fit(X_train,y_train)
     y_pred = rf.predict(X_test)
